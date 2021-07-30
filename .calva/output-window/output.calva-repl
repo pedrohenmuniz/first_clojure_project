@@ -1,0 +1,77 @@
+; This is the Calva evaluation results output window.
+; TIPS: The keyboard shortcut `ctrl+alt+c o` shows and focuses this window
+;   when connected to a REPL session.
+; Please see https://calva.io/output/ for more info.
+; Happy coding! ♥️
+
+; Jacking in...
+; Starting Jack-in Terminal: lein update-in :dependencies conj '[nrepl,"0.8.3"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.26.0"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- repl :headless
+; nREPL Connection was closed
+; Hooking up nREPL sessions...
+; Connected session: clj
+; TIPS: 
+;   - You can edit the contents here. Use it as a REPL if you like.
+;   - `alt+enter` evaluates the current top level form.
+;   - `ctrl+enter` evaluates the current form.
+;   - `alt+up` and `alt+down` traverse up and down the REPL command history
+;      when the cursor is after the last contents at the prompt
+;   - Clojure lines in stack traces are peekable and clickable.
+clj꞉nos_codamos.core꞉> 
+; Jack-in done.
+clj꞉nos_codamos.core꞉> 
+Custo total com 'Vestuário': 1300
+Custo total com 'Restaurante': 40
+Custo total: 1340
+{:name John Doe, :cpf 12345678910, :email jhon.doe@email.com, :card {:number 123456, :csc 123, :expiration #object[java.time.ZonedDateTime 0x49085bc1 2023-10-20T00:00-03:00[America/Sao_Paulo]], :limit 10000, :purchases [{:date #object[java.time.ZonedDateTime 0x2b64aa2d 2021-10-20T00:00-03:00[America/Sao_Paulo]], :amount 1000, :merchant Adidas, :category Vestuário} {:date #object[java.time.ZonedDateTime 0x1c313837 2021-03-13T00:00-03:00[America/Sao_Paulo]], :amount 40, :merchant Burger King, :category Restaurante} {:date #object[java.time.ZonedDateTime 0x44072a48 2021-05-29T00:00-03:00[America/Sao_Paulo]], :amount 300, :merchant Nike, :category Vestuário}]}}
+Compra com o valor de 40: ({:date #object[java.time.ZonedDateTime 0x1c313837 2021-03-13T00:00-03:00[America/Sao_Paulo]], :amount 40, :merchant Burger King, :category Restaurante})
+Compra com o valor de 1000: ({:date #object[java.time.ZonedDateTime 0x2b64aa2d 2021-10-20T00:00-03:00[America/Sao_Paulo]], :amount 1000, :merchant Adidas, :category Vestuário})
+Compra com o valor de 555: ()
+Compra no estabelecimento 'burger': ({:date #object[java.time.ZonedDateTime 0x1c313837 2021-03-13T00:00-03:00[America/Sao_Paulo]], :amount 40, :merchant Burger King, :category Restaurante})
+Compra no estabelecimento 'XPTO': ()
+nil
+; WARNING: contains? already refers to: #'clojure.core/contains? in namespace: nos_codamos.db, being replaced by: #'java-time/contains?
+; WARNING: iterate already refers to: #'clojure.core/iterate in namespace: nos_codamos.db, being replaced by: #'java-time/iterate
+; WARNING: range already refers to: #'clojure.core/range in namespace: nos_codamos.db, being replaced by: #'java-time/range
+; WARNING: min already refers to: #'clojure.core/min in namespace: nos_codamos.db, being replaced by: #'java-time/min
+; WARNING: format already refers to: #'clojure.core/format in namespace: nos_codamos.db, being replaced by: #'java-time/format
+; WARNING: zero? already refers to: #'clojure.core/zero? in namespace: nos_codamos.db, being replaced by: #'java-time/zero?
+; WARNING: max already refers to: #'clojure.core/max in namespace: nos_codamos.db, being replaced by: #'java-time/max
+; WARNING: contains? already refers to: #'clojure.core/contains? in namespace: nos_codamos.logic, being replaced by: #'java-time/contains?
+; WARNING: iterate already refers to: #'clojure.core/iterate in namespace: nos_codamos.logic, being replaced by: #'java-time/iterate
+; WARNING: range already refers to: #'clojure.core/range in namespace: nos_codamos.logic, being replaced by: #'java-time/range
+; WARNING: min already refers to: #'clojure.core/min in namespace: nos_codamos.logic, being replaced by: #'java-time/min
+; WARNING: format already refers to: #'clojure.core/format in namespace: nos_codamos.logic, being replaced by: #'java-time/format
+; WARNING: zero? already refers to: #'clojure.core/zero? in namespace: nos_codamos.logic, being replaced by: #'java-time/zero?
+; WARNING: max already refers to: #'clojure.core/max in namespace: nos_codamos.logic, being replaced by: #'java-time/max
+clj꞉nos_codamos.main꞉> 
+#'nos_codamos.logic/get-purchase-by-merchant
+; WARNING: contains? already refers to: #'clojure.core/contains? in namespace: nos_codamos.logic, being replaced by: #'java-time/contains?
+; WARNING: iterate already refers to: #'clojure.core/iterate in namespace: nos_codamos.logic, being replaced by: #'java-time/iterate
+; WARNING: range already refers to: #'clojure.core/range in namespace: nos_codamos.logic, being replaced by: #'java-time/range
+; WARNING: min already refers to: #'clojure.core/min in namespace: nos_codamos.logic, being replaced by: #'java-time/min
+; WARNING: format already refers to: #'clojure.core/format in namespace: nos_codamos.logic, being replaced by: #'java-time/format
+; WARNING: zero? already refers to: #'clojure.core/zero? in namespace: nos_codamos.logic, being replaced by: #'java-time/zero?
+; WARNING: max already refers to: #'clojure.core/max in namespace: nos_codamos.logic, being replaced by: #'java-time/max
+clj꞉nos_codamos.logic꞉> 
+Custo total com 'Vestuário': 1300
+Custo total com 'Restaurante': 40
+Custo total: 1340
+{:name John Doe, :cpf 12345678910, :email jhon.doe@email.com, :card {:number 123456, :csc 123, :expiration #object[java.time.ZonedDateTime 0x49085bc1 2023-10-20T00:00-03:00[America/Sao_Paulo]], :limit 10000, :purchases [{:date #object[java.time.ZonedDateTime 0x2b64aa2d 2021-10-20T00:00-03:00[America/Sao_Paulo]], :amount 1000, :merchant Adidas, :category Vestuário} {:date #object[java.time.ZonedDateTime 0x1c313837 2021-03-13T00:00-03:00[America/Sao_Paulo]], :amount 40, :merchant Burger King, :category Restaurante} {:date #object[java.time.ZonedDateTime 0x44072a48 2021-05-29T00:00-03:00[America/Sao_Paulo]], :amount 300, :merchant Nike, :category Vestuário}]}}
+Compra com o valor de 40: ({:date #object[java.time.ZonedDateTime 0x1c313837 2021-03-13T00:00-03:00[America/Sao_Paulo]], :amount 40, :merchant Burger King, :category Restaurante})
+Compra com o valor de 1000: ({:date #object[java.time.ZonedDateTime 0x2b64aa2d 2021-10-20T00:00-03:00[America/Sao_Paulo]], :amount 1000, :merchant Adidas, :category Vestuário})
+Compra com o valor de 555: ()
+Compra no estabelecimento 'burger': ({:date #object[java.time.ZonedDateTime 0x1c313837 2021-03-13T00:00-03:00[America/Sao_Paulo]], :amount 40, :merchant Burger King, :category Restaurante})
+Compra no estabelecimento 'XPTO': ()
+nil
+clj꞉nos_codamos.main꞉> 
+Custo total com 'Vestuário': 1300
+Custo total com 'Restaurante': 40
+Custo total: 1340
+{:name John Doe, :cpf 12345678910, :email jhon.doe@email.com, :card {:number 123456, :csc 123, :expiration #object[java.time.ZonedDateTime 0x49085bc1 2023-10-20T00:00-03:00[America/Sao_Paulo]], :limit 10000, :purchases [{:date #object[java.time.ZonedDateTime 0x2b64aa2d 2021-10-20T00:00-03:00[America/Sao_Paulo]], :amount 1000, :merchant Adidas, :category Vestuário} {:date #object[java.time.ZonedDateTime 0x1c313837 2021-03-13T00:00-03:00[America/Sao_Paulo]], :amount 40, :merchant Burger King, :category Restaurante} {:date #object[java.time.ZonedDateTime 0x44072a48 2021-05-29T00:00-03:00[America/Sao_Paulo]], :amount 300, :merchant Nike, :category Vestuário}]}}
+Compra com o valor de 40: ({:date #object[java.time.ZonedDateTime 0x1c313837 2021-03-13T00:00-03:00[America/Sao_Paulo]], :amount 40, :merchant Burger King, :category Restaurante})
+Compra com o valor de 1000: ({:date #object[java.time.ZonedDateTime 0x2b64aa2d 2021-10-20T00:00-03:00[America/Sao_Paulo]], :amount 1000, :merchant Adidas, :category Vestuário})
+Compra com o valor de 555: ()
+Compra no estabelecimento 'burger': ({:date #object[java.time.ZonedDateTime 0x1c313837 2021-03-13T00:00-03:00[America/Sao_Paulo]], :amount 40, :merchant Burger King, :category Restaurante})
+Compra no estabelecimento 'XPTO': ()
+nil
+clj꞉nos_codamos.main꞉> 
