@@ -2,7 +2,12 @@
   (:require [schema.core :as s]
             [nos-codamos.models.common :as m.common]))
 
-(s/def Purchase {:date m.common/LocalDate :amount s/Int :merchant s/Str :category s/Str})
+(s/def Purchase {:purchase/id       java.util.UUID
+                 :purchase/date     m.common/LocalDate
+                 :purchase/amount   java.math.BigDecimal
+                 :purchase/merchant s/Str
+                 :purchase/category s/Str})
+
 (s/def Purchases [Purchase])
 
 ;; (s/def TestBigDecimal {:date BigDecimal :amount s/Int :merchant s/Str :category s/Str})

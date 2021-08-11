@@ -7,5 +7,6 @@
                  [clojure.java-time "0.3.2"]
                  [prismatic/schema "1.1.12"]
                  [prismatic/schema-generators "0.1.3"]
-                 [org.clojure/test.check "1.1.0"]]
+                 [org.clojure/test.check "1.1.0"]
+                 [com.datomic/datomic-pro "1.0.6269"]]
   :repl-options {:init-ns nos-codamos.core})

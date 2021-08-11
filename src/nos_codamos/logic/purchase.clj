@@ -2,12 +2,25 @@
   (:require [schema.core :as s]
             [nos-codamos.models.purchase :as m.purchase]
             [nos-codamos.models.customer :as m.customer]
-            [nos-codamos.logic.validations :as l.validations]))
+            [nos-codamos.logic.validations :as l.validations]
+            [nos-codamos.models.common :as m.common]))
 
 (s/defn add-purchase :- m.purchase/Purchases
   "Append a new purchase in an array of purchases"
   [purchases :- m.purchase/Purchases, purchase :- m.purchase/Purchase]
   (conj purchases purchase))
+
+(s/defn new-purchase :- m.purchase/Purchase
+  [id :- java.util.UUID
+   date :- m.common/LocalDate
+   amount :- java.math.BigDecimal
+   merchant :- s/Str
+   category :- s/Str]
+  {:purchase/id id
+   :purchase/date date
+   :purchase/amount amount
+   :purchase/merchant merchant
+   :purchase/category category})
 
 (s/defn get-all-purchases-from-a-customer :- m.purchase/Purchases
   "Return all purchases from a card of a customer"

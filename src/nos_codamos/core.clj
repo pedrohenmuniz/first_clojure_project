@@ -8,10 +8,10 @@
 
 
 
-;; (defn foo
-;;   "I don't do a whole lot."
-;;   [x]
-;;   (println x "Hello, World!"))
+(defn foo
+ "I don't do a whole lot."
+ [x]
+ (println x "Hello, World!"))
 
 
 ;(use 'java-time)
@@ -196,3 +196,32 @@
 ;;; (pprint (g/generate m.purchase/Purchase))
 ;
 ;;;
+
+
+
+
+
+
+
+;Dar continuidade ao código escrito no desafio anterior, o alterando para que as informações sejam armazenadas no banco de dados Datomic.
+;
+;O que esse código precisa fazer?
+;
+;Se conectar à uma instância local do banco de dados Datomic;
+;Armazenar as informações do cliente e de seu cartão;
+;Armazenar as informações das compras realizadas;
+;Recuperar e listar as compras realizadas.
+;(opcional) Relatórios:
+;
+;Cliente que realizou o maior número de compras;
+;Cliente que realizou a compra de maior valor;
+;Clientes que nunca realizaram compras.
+;Bom projeto!
+
+;1 Você precisa escrever uma função clojure que salve os dados do cartão de crédito e de seu cliente no banco de dados Datomic.
+;2 Você precisa escrever uma função clojure que salve no banco de dados Datomic as compras realizadas no cartão de crédito de um cliente.
+;3 Você precisa escrever uma função em clojure que recupere do banco de dados Datomic as compras realizadas em um cartão de crédito.
+;4 Criar funções para gerar relatórios
+;  Cliente que realizou o maior número de compras
+;  Cliente que realizou a compra de maior valor
+;  Clientes que nunca realizaram compras
