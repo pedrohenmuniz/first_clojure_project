@@ -11,7 +11,7 @@
   (conj purchases purchase))
 
 (s/defn new-purchase :- m.purchase/Purchase
-  [id :- java.util.UUID
+  ( [id :- java.util.UUID
    date :- m.common/LocalDate
    amount :- java.math.BigDecimal
    merchant :- s/Str
@@ -21,6 +21,14 @@
    :purchase/amount amount
    :purchase/merchant merchant
    :purchase/category category})
+  ([date :- m.common/LocalDate
+    amount :- java.math.BigDecimal
+    merchant :- s/Str
+    category :- s/Str]
+   {:purchase/date date
+    :purchase/amount amount
+    :purchase/merchant merchant
+    :purchase/category category}))
 
 (s/defn get-all-purchases-from-a-customer :- m.purchase/Purchases
   "Return all purchases from a card of a customer"

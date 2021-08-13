@@ -70,66 +70,90 @@
 ;(def customer1 (l.customer/new-customer ((l.common/generate-uuid) "John Doe" "847.101.200-64" "jhon.doe@email.com")))
 (def customer0 (l.customer/new-customer (l.common/generate-uuid) "John Doe" "847.101.200-64" "jhon.doe@email.com"))
 (def customer1 (l.customer/new-customer (l.common/generate-uuid) "Janie Doe" "647.651.790-28" "janie.doe@email.com"))
+(def customer2 (l.customer/new-customer (l.common/generate-uuid) "Richard Doe" "063.092.700-60" "richard.doe@email.com"))
 (pprint (s/validate m.customer/Customer customer1))
 
 ;(println "Java Local Date: " (class (java.time.LocalDate/parse "2022-08-31")))
 ;(def credit-card1 (l.credit-card/new-credit-card (l.common/generate-uuid) "5183 7662 5914 6292" "392" (java.time.LocalDate/parse "2022-08-31") 15000M))
 (def credit-card0 (l.credit-card/new-credit-card (l.common/generate-uuid) "5183 7662 5914 6292" "392" "2022-08-31" 15000M))
 (def credit-card1 (l.credit-card/new-credit-card (l.common/generate-uuid) "4716 0015 2964 1339" "432" "2023-04-31" 1000M))
+(def credit-card2 (l.credit-card/new-credit-card (l.common/generate-uuid) "1111 2222 3333 4444" "123" "2024-07-31" 500M))
 ;(pprint (s/validate m.credit-card/CreditCard credit-card1))
 
-(def purchase1 (l.purchase/new-purchase (l.common/generate-uuid) (java.time.LocalDate/parse "2021-10-20") 1000M "Adidas" "Vestuário"))
-(def purchase2 (l.purchase/new-purchase (l.common/generate-uuid) (java.time.LocalDate/parse "2021-03-27") 40 "Burger King" "Restaurante"))
-(def purchase3 (l.purchase/new-purchase (l.common/generate-uuid) (java.time.LocalDate/parse "2021-05-29") 300 "Nike" "Vestuário"))
+(def purchase0 (l.purchase/new-purchase (l.common/generate-uuid) "2021-10-20" 1000M "Adidas" "Vestuário"))
+(def purchase1 (l.purchase/new-purchase (l.common/generate-uuid) "2021-03-27" 40M "Burger King" "Restaurante"))
+(def purchase2 (l.purchase/new-purchase (l.common/generate-uuid) "2021-05-29" 300M "Nike" "Vestuário"))
+(def purchase3 (l.purchase/new-purchase (l.common/generate-uuid) "2021-05-29" 25M "Mc Donalds" "Restaurante"))
+(def purchase4 (l.purchase/new-purchase (l.common/generate-uuid) "2021-05-29" 200M "Lupo" "Vestuário"))
+(def purchase5 (l.purchase/new-purchase (l.common/generate-uuid) "2021-05-29" 666M "Lupo" "Vestuário"))
 ;(pprint (s/validate m.purchase/Purchase purchase1))
 
-(def customers [customer0, customer1])
-(def credit-cards [credit-card0, credit-card1])
+(def customers [customer0, customer1, customer2])
+(def credit-cards [credit-card0, credit-card1, credit-card2])
+(def purchases [purchase0, purchase1, purchase2, purchase3, purchase4, purchase5])
 
 
 ; Add customers and credit-cards into database
 (pprint @(db.common/add-customers! conn customers))
 (pprint @(db.common/add-credit-cards! conn credit-cards))
+(pprint @(db.common/add-purchases! conn purchases))
 
 
 
-(println "Customers before assign credit cards")
-(def db-customers (db.common/get-all-customers (d/db conn)))
-(pprint db-customers)
-
-;(def db-credit-cards (db.common/get-all-credit-cards (d/db conn)))
-;(pprint db-credit-cards)
-
-;(pprint @(db.common/assign-credit-cards! conn customer0 [credit-card0, credit-card1]))
+(println "\nCustomers before assign credit card:")
+(pprint (db.common/get-all-customers (d/db conn)))
 
 
-(println "Customers after assign credit cards")
-(def db-customers (db.common/get-all-customers (d/db conn)))
-(pprint db-customers)
+(pprint @(db.common/assign-credit-cards! conn customer0 [credit-card0, credit-card1]))
+(pprint @(db.common/assign-credit-cards! conn customer1 [credit-card2]))
+(println "\nCustomers after assign credit card:")
+(pprint (db.common/get-all-customers (d/db conn)))
 
-(def db-customers (db.common/get-all-customers-another-way (d/db conn)))
-(pprint db-customers)
+;(println "db-adds for assign credit-cards")
+;(pprint (db.common/db-adds-for-assign-credit-cards customer0 credit-cards))
+;(println "db-adds for assign purchases")
+;(pprint (db.common/db-adds-for-assign-purchases credit-card0 purchases))
+
+(pprint @(db.common/assign-purchases! conn credit-card0 [purchase0, purchase1, purchase2]))
+(pprint @(db.common/assign-purchases! conn credit-card2 [purchase3, purchase4]))
+
+(println "\nCustomers after assign purchases to credit-card:")
+(pprint (db.common/get-all-customers (d/db conn)))
+
+(println "\nCredit cards after assign purchases to it:")
+(pprint (db.common/get-all-credit-cards (d/db conn)))
+
+(println "\n All purchases from database:")
+(pprint (db.common/get-all-purchases (d/db conn)))
+
+
+(println "\nPurchases from credit-card 0:")
+(pprint (db.common/get-all-purchases-from-credit-card (d/db conn) (:credit-card/id credit-card0)))
+(println "\nPurchases from credit-card 1:")
+(pprint (db.common/get-all-purchases-from-credit-card (d/db conn) (:credit-card/id credit-card1)))
+(println "\nPurchases from credit-card 2:")
+(pprint (db.common/get-all-purchases-from-credit-card (d/db conn) (:credit-card/id credit-card2)))
+
+(println "\nCustomer who bought the most:")
+(pprint (db.common/customer-who-bought-the-most (d/db conn)))
+
+(println "\nCustomer who made the most expensive purchase")
+(def customer-most-expensive-purchase (db.common/customer-who-made-the-most-expensive-purchase-nested (d/db conn)))
+
+(pprint (-> customer-most-expensive-purchase
+            :customer
+            ))
+(pprint (db.common/customer-who-made-the-most-expensive-purchase-nested (d/db conn)))
 
 ;(db.common/delete-db!)
 
 
 
 
-
-(reduce (fn [db-adds credit-cards] (conj db-adds [:db/add
-                                              [:customer/id (:customer/id customer0)]
-                                              :customer/credit-cards
-                                              [:credit-card/id (:credit-card/id credit-cards)]]))
-        []
-        [credit-card0, credit-card1])
-
-
-
-
-;1 Você precisa escrever uma função clojure que salve os dados do cartão de crédito e de seu cliente no banco de dados Datomic.
-;2 Você precisa escrever uma função clojure que salve no banco de dados Datomic as compras realizadas no cartão de crédito de um cliente.
-;3 Você precisa escrever uma função em clojure que recupere do banco de dados Datomic as compras realizadas em um cartão de crédito.
-;4 Criar funções para gerar relatórios
-;  Cliente que realizou o maior número de compras
-;  Cliente que realizou a compra de maior valor
-;  Clientes que nunca realizaram compras
+; TODO Você precisa escrever uma função clojure que salve os dados do cartão de crédito e de seu cliente no banco de dados Datomic. (OK)
+; TODO Você precisa escrever uma função clojure que salve no banco de dados Datomic as compras realizadas no cartão de crédito de um cliente. (OK)
+; TODO Você precisa escrever uma função em clojure que recupere do banco de dados Datomic as compras realizadas em um cartão de crédito. (OK)
+; TODO Criar funções para gerar relatórios
+;  TODO Cliente que realizou o maior número de compras
+;  TODO Cliente que realizou a compra de maior valor
+;  TODO Clientes que nunca realizaram compras
